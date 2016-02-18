@@ -9,4 +9,4 @@
  * Main module of the application.
  */
 angular
-  .module('modularoomApp', ['angular.filter','ngDragDrop']);
+  .module('modularoomApp', ['angular.filter']);

@@ -4,7 +4,12 @@
       <span>{{c.title}}</span>
       <div class="furniture {{c.type}}" drag="c" dragStyle="furnitureDrag"></div>
     </div>
-
+	
+	<div ng-repeat="c in furnitures" class="column">
+      <span>{{c.title}}</span>
+      <div class="furniture {{c.type}}" data-drag="true" jqyoui-draggable="{index: {{$index}}, placeholder:'keep', onStart:'startCallback(c, $index)'}" data-jqyoui-options="{ revert: 'invalid', helper: 'clone'}"></div>
+    </div>
+<!--
     <div class="grid">
       <div class="row" ng-repeat="items in grid | chunkBy:5">
         <div class="cell" ng-repeat="i in items" drop="i" dropStyle="furnitureDrop" ng-class="i.type">
@@ -12,4 +17,15 @@
         </div>
       </div>
     </div>
+	-->
+	 <div class="grid">
+      <div class="row" ng-repeat="items in grid | chunkBy:5">
+        <div class="cell" ng-repeat="i in items" data-drop="true" jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback'}" ng-model="dataGrid">
+		
+          {{i.index}}
+		
+        </div>
+      </div>
+    </div>
+
 

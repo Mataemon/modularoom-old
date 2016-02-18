@@ -53,7 +53,6 @@ angular.module('modularoomApp').controller('appCtrl', ["$scope", "$rootScope", f
 
   
   $scope.grid = grid;
-  $scope.dataGrid = [];
 
   $scope.furnitures = [{
     title: "Chaise",
@@ -62,19 +61,11 @@ angular.module('modularoomApp').controller('appCtrl', ["$scope", "$rootScope", f
     title: "Bureau",
     type: "desk"
   }];
-  
-    $scope.startCallback = function(event, ui, title) {
-    console.log('You started draggin: ' + title.type);
-    $scope.draggedTitle = title.type;
-  };
-  $scope.dropCallback = function(event, ui) {
-    console.log($scope.dataGrid);
-  };
-/*
+
   $rootScope.$on('dropEvent', function(evt, dragged, dropped) {
     $scope.grid[getIndex(dropped.index)].type = dragged.type;
     $scope.$apply();
   });
-*/
+
 }]);
 

@@ -27,6 +27,7 @@ module.exports = function(config) {
       'bower_components/bootstrap/dist/js/bootstrap.js',
       'bower_components/angular-filter/dist/angular-filter.min.js',
       'bower_components/jquery-ui/jquery-ui.js',
+      'bower_components/angular-dragdrop/src/angular-dragdrop.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
