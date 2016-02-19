@@ -31,14 +31,16 @@ angular.module('modularoomApp').controller('appCtrl', ["$scope", "$rootScope", f
   6 5 4
   7 8 9
   */
-  var isMatrix = false;
+  var isMatrix = true;
 
   for (var i = 0; i < total; i++) {
     var j = getIndex(i);
+	
     grid.push({
-      index: j,
+	  title: "Vide",
       type: "empty"
     });
+	
   }
 
   function getIndex(i) {
@@ -51,6 +53,12 @@ angular.module('modularoomApp').controller('appCtrl', ["$scope", "$rootScope", f
       return i;
   }
 
+   $scope.getMyIndex = function(items, i, index) {
+	  console.log(items);
+	  console.log(i);
+	  console.log(index);
+      return index;
+  }
   
   $scope.grid = grid;
   $scope.dataGrid = [];
@@ -59,16 +67,21 @@ angular.module('modularoomApp').controller('appCtrl', ["$scope", "$rootScope", f
     title: "Chaise",
     type: "chair"
   }, {
-    title: "Bureau",
+	title: "Bureau",
     type: "desk"
   }];
   
-    $scope.startCallback = function(event, ui, title) {
-    console.log('You started draggin: ' + title.type);
+   $scope.startCallback = function(event, ui, title, index) {
+    //console.log('You started draggin: ' + title.type);
+	//console.log($scope.grid);
+	//console.log('index: ' + index);
     $scope.draggedTitle = title.type;
   };
-  $scope.dropCallback = function(event, ui) {
-    console.log($scope.dataGrid);
+  $scope.dropCallback = function(event, ui, i, index) {
+
+    console.log($scope.grid);
+		  console.log(i);
+		  console.log(index);
   };
 /*
   $rootScope.$on('dropEvent', function(evt, dragged, dropped) {

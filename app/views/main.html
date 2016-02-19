@@ -1,13 +1,25 @@
 
 
+<div ng-controller="DanddCtrl">
+
+
     <div ng-repeat="c in furnitures" class="column">
       <span>{{c.title}}</span>
-      <div class="furniture {{c.type}}" drag="c" dragStyle="furnitureDrag"></div>
+      <div class="furniture {{c.type}}" dragclone="c" dragStyle="furnitureDrag"></div>
     </div>
+
+    <div class="grid">
+      <div class="row" ng-repeat="items in grid | chunkBy:5">
+        <div class="cell" ng-repeat="i in items" drop="i" dropStyle="furnitureDrop" ng-class="i.type" drag="i" dragStyle="furnitureDrag">
+          {{i.index}}
+        </div>
+      </div>
+    </div>
+  </div>
 	
 	<div ng-repeat="c in furnitures" class="column">
       <span>{{c.title}}</span>
-      <div class="furniture {{c.type}}" data-drag="true" jqyoui-draggable="{index: {{$index}}, placeholder:'keep', onStart:'startCallback(c, $index)'}" data-jqyoui-options="{ revert: 'invalid', helper: 'clone'}"></div>
+      <div class="furniture {{c.type}}" ng-model="furnitures" data-drag="true" jqyoui-draggable="{index: {{$index}}, placeholder:'keep', deepCopy: true}" data-jqyoui-options="{ revert: 'invalid', helper: 'clone'}"></div>
     </div>
 <!--
     <div class="grid">
@@ -18,14 +30,21 @@
       </div>
     </div>
 	-->
+	  <!--
 	 <div class="grid">
-      <div class="row" ng-repeat="items in grid | chunkBy:5">
-        <div class="cell" ng-repeat="i in items" data-drop="true" jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback'}" ng-model="dataGrid">
-		
-          {{i.index}}
-		
+      <div class="row" ng-repeat="items in grid | chunkBy:5" >
+        <div class="cell" ng-repeat="i in items track by i.num" ng-model="dataGrid" data-drop="true" jqyoui-droppable="{index: {{i.num}}, multiple:true,onDrop:'dropCallback(i, $index)'}">
+		<div class="furniture {{i.type}}" ng-model="dataGrid" data-drag="true" jqyoui-draggable="{index: {{$index}}, placeholder:'keep', onStart:'startCallback(c, $index)', deepCopy: true}" >{{i.num}} {{$index}}</div>
         </div>
       </div>
+	-->
+	 <div class="grid">
+      <div class="row" ng-repeat="items in grid | chunkBy:5" >
+        <div class="cell" ng-repeat="i in items">
+			<div class="furniture" ng-model="grid" data-drag="true" jqyoui-draggable="{index: {{$index}}}" data-jqyoui-options="{revert: 'invalid'}" data-drop="true" jqyoui-droppable="{index: {{$index}}, multiple:true,onDrop:'dropCallback(i, $index)'}" ng-class="i.type">&nbsp;</div>
+        </div>
+      </div>
+	  
     </div>
 
 
